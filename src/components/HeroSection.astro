@@ -1,0 +1,73 @@
+---
+// Componente estático — sin JS del lado del cliente
+---
+
+<section
+  class="min-h-screen flex flex-col justify-center section-padding pt-28 relative overflow-hidden"
+>
+  <!-- Grid bg -->
+  <div
+    class="absolute inset-0 opacity-[0.03]"
+    style="background-image: linear-gradient(hsl(172 66% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(172 66% 50%) 1px, transparent 1px); background-size: 60px 60px;"
+  >
+  </div>
+
+  <div class="relative max-w-7xl mx-auto w-full">
+    <p
+      class="font-mono text-primary text-sm mb-4 animate-fade-in-up"
+      style="animation-delay: 0.1s;"
+    >
+      Hola, soy Piero Cahuana
+    </p>
+    <h1
+      class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-6 animate-fade-in-up"
+      style="animation-delay: 0.2s;"
+    >
+      Desarrollo Web<br />
+      <span class="text-gradient">& Ciencia de Datos</span>
+    </h1>
+    <p
+      class="text-muted-foreground text-lg md:text-xl max-w-xl mb-10 animate-fade-in-up"
+      style="animation-delay: 0.35s;"
+    >
+      Estudiante de último año de Ingeniería de Sistemas. Construyo soluciones
+      web y analizo datos con código limpio y atención al detalle.
+    </p>
+
+    <div class="flex gap-4 animate-fade-in-up" style="animation-delay: 0.5s;">
+      <a
+        href="#proyectos"
+        class="inline-flex items-center gap-2 bg-primary text-primary-foreground font-mono text-sm px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
+      >
+        Ver proyectos
+      </a>
+      <a
+        href="#sobre-mi"
+        class="inline-flex items-center gap-2 border border-border text-foreground font-mono text-sm px-6 py-3 rounded-md hover:border-primary/50 transition-colors"
+      >
+        Sobre mí
+      </a>
+    </div>
+  </div>
+
+  <!-- ArrowDown icon -->
+  <a
+    href="#proyectos"
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors animate-bounce"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M12 5v14"></path>
+      <path d="m19 12-7 7-7-7"></path>
+    </svg>
+  </a>
+</section>

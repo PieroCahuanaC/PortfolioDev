@@ -1,0 +1,498 @@
+---
+// Iconos SVG como funciones helper
+const icons: Record<string, { paths: string; viewBox?: string }> = {
+  FileText: {
+    paths:
+      '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path>',
+  },
+  ShoppingCart: {
+    paths:
+      '<circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>',
+  },
+  Bot: {
+    paths:
+      '<path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path>',
+  },
+  MapPin: {
+    paths:
+      '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle>',
+  },
+  GraduationCap: {
+    paths:
+      '<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>',
+  },
+  Github: {
+    paths:
+      '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path>',
+  },
+  ExternalLink: {
+    paths:
+      '<path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>',
+  },
+};
+
+interface FeaturedProject {
+  title: string;
+  type: string;
+  iconName: string;
+  problem: string;
+  solution: string;
+  stack: string[];
+  result: string;
+  gradient: string;
+  mockupType: "desktop" | "mobile" | "both";
+  link?: string;
+  github?: string;
+}
+
+interface OtherProject {
+  title: string;
+  type: string;
+  iconName: string;
+  description: string;
+  stack: string[];
+  link?: string;
+  github?: string;
+}
+
+const featuredProjects: FeaturedProject[] = [
+  {
+    title: "FacturaTotal",
+    type: "Fullstack · PWA",
+    iconName: "FileText",
+    problem:
+      "Las pequeñas empresas necesitaban un sistema de facturación electrónica integrado con SUNAT, accesible desde cualquier dispositivo.",
+    solution:
+      "Desarrollé una PWA completa con integración directa a la API de SUNAT para emisión de comprobantes electrónicos, gestión de clientes y reportes en tiempo real.",
+    stack: ["React", "Node.js", "PostgreSQL", "API SUNAT", "PWA", "TypeScript"],
+    result:
+      "Sistema funcional que permite emitir boletas y facturas electrónicas validadas por SUNAT, con acceso offline y sincronización automática.",
+    gradient: "from-primary/20 via-primary/5 to-transparent",
+    mockupType: "both",
+  },
+  {
+    title: "Ecommerce Familiar",
+    type: "Fullstack",
+    iconName: "ShoppingCart",
+    problem:
+      "Un negocio familiar necesitaba digitalizar sus ventas y gestionar inventario de forma eficiente sin depender de plataformas costosas.",
+    solution:
+      "Construí un ecommerce completo a medida con catálogo de productos, carrito de compras, pasarela de pagos y panel de administración para gestión de inventario.",
+    stack: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
+    result:
+      "Plataforma operativa que digitalizó el negocio familiar, incrementando el alcance de ventas y simplificando la gestión del inventario.",
+    gradient: "from-emerald-500/20 via-emerald-500/5 to-transparent",
+    mockupType: "desktop",
+  },
+  {
+    title: "Bot WhatsApp – Mueblería",
+    type: "Backend",
+    iconName: "Bot",
+    problem:
+      "Una mueblería recibía cientos de consultas diarias por WhatsApp que saturaban al equipo de ventas con preguntas repetitivas.",
+    solution:
+      "Desarrollé un bot de WhatsApp que automatiza respuestas, muestra catálogo de productos, gestiona cotizaciones y deriva a vendedores cuando es necesario.",
+    stack: ["Node.js", "WhatsApp API", "MongoDB", "Express", "Dialogflow"],
+    result:
+      "Reducción del 70% en consultas manuales, respuestas instantáneas 24/7 y mejor conversión de ventas gracias a la atención inmediata.",
+    gradient: "from-green-500/20 via-green-500/5 to-transparent",
+    mockupType: "mobile",
+  },
+];
+
+const otherProjects: OtherProject[] = [
+  {
+    title: "Lotizador",
+    type: "Fullstack",
+    iconName: "MapPin",
+    description:
+      "Sistema de gestión y visualización de lotes para proyectos inmobiliarios. Permite administrar terrenos, asignar lotes y dar seguimiento a pagos.",
+    stack: ["React", "Node.js", "PostgreSQL", "Mapbox"],
+  },
+  {
+    title: "Copia de Pragma",
+    type: "Frontend",
+    iconName: "GraduationCap",
+    description:
+      "Réplica de la página educativa Pragma como ejercicio de maquetación avanzada, animaciones y diseño responsive pixel-perfect.",
+    stack: ["React", "CSS Modules", "Framer Motion"],
+  },
+];
+
+function slugify(text: string) {
+  return text.toLowerCase().replace(/\s+/g, "-");
+}
+
+function domainify(text: string) {
+  return text.toLowerCase().replace(/\s+/g, "") + ".app";
+}
+---
+
+<section id="proyectos" class="py-24 md:py-32 px-6 md:px-12 lg:px-20 relative">
+  <!-- Background accent -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto relative">
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <span class="font-mono text-primary text-sm tracking-widest uppercase"
+        >01. Portfolio</span
+      >
+      <h2
+        class="font-display text-4xl md:text-5xl lg:text-6xl font-bold mt-3 mb-4"
+      >
+        Proyectos <span class="text-gradient">Destacados</span>
+      </h2>
+      <p class="text-muted-foreground max-w-xl mx-auto">
+        Proyectos reales que resuelven problemas reales. Cada uno diseñado,
+        desarrollado y desplegado de principio a fin.
+      </p>
+    </div>
+
+    <!-- Featured projects -->
+    <div class="space-y-8 mb-20">
+      {
+        featuredProjects.map((project, i) => {
+          const isReversed = i % 2 !== 0;
+          const icon = icons[project.iconName];
+          return (
+            <div
+              id={`project-${slugify(project.title)}`}
+              class="group relative scroll-mt-24"
+            >
+              {/* Glow effect on hover */}
+              <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+
+              <div class="relative bg-card/80 backdrop-blur border border-border rounded-2xl overflow-hidden hover:glow-border transition-all duration-500">
+                <div
+                  class={`grid lg:grid-cols-2 gap-0 ${
+                    isReversed ? "lg:direction-rtl" : ""
+                  }`}
+                >
+                  {/* Content side */}
+                  <div
+                    class={`p-6 md:p-8 lg:p-10 flex flex-col justify-center ${
+                      isReversed ? "lg:order-2" : ""
+                    }`}
+                  >
+                    {/* Type badge */}
+                    <div class="flex items-center gap-2 mb-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="text-primary"
+                        set:html={icon.paths}
+                      />
+                      <span class="font-mono text-xs text-primary tracking-wider uppercase">
+                        {project.type}
+                      </span>
+                    </div>
+
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mb-6 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+
+                    <div class="space-y-4 mb-6">
+                      <div>
+                        <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                          Problema
+                        </span>
+                        <p class="text-sm text-foreground/80 mt-1 leading-relaxed">
+                          {project.problem}
+                        </p>
+                      </div>
+                      <div>
+                        <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                          Solución
+                        </span>
+                        <p class="text-sm text-foreground/80 mt-1 leading-relaxed">
+                          {project.solution}
+                        </p>
+                      </div>
+                      <div>
+                        <span class="font-mono text-xs text-primary uppercase tracking-wider font-medium">
+                          Resultado
+                        </span>
+                        <p class="text-sm text-foreground/90 mt-1 leading-relaxed font-medium">
+                          {project.result}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Stack */}
+                    <div class="flex flex-wrap gap-2 mb-6">
+                      {project.stack.map((tech) => (
+                        <span class="font-mono text-xs text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-md">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Links */}
+                    <div class="flex gap-4 text-muted-foreground">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          class="flex items-center gap-1.5 text-sm hover:text-primary transition-colors"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            set:html={icons.Github.paths}
+                          />
+                          Código
+                        </a>
+                      )}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          class="flex items-center gap-1.5 text-sm hover:text-primary transition-colors"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            set:html={icons.ExternalLink.paths}
+                          />
+                          Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Preview side */}
+                  <div
+                    class={`relative p-6 md:p-8 lg:p-10 flex items-center justify-center bg-gradient-to-br ${
+                      project.gradient
+                    } border-t lg:border-t-0 ${
+                      isReversed
+                        ? "lg:order-1 lg:border-r border-border"
+                        : "lg:border-l border-border"
+                    }`}
+                  >
+                    {/* Desktop mockup */}
+                    {(project.mockupType === "desktop" ||
+                      project.mockupType === "both") && (
+                      <div class="relative w-full max-w-md mx-auto">
+                        <div class="bg-secondary/80 rounded-lg border border-border overflow-hidden shadow-lg">
+                          <div class="flex items-center gap-2 px-3 py-2 border-b border-border bg-muted/50">
+                            <div class="flex gap-1.5">
+                              <div class="w-2.5 h-2.5 rounded-full bg-destructive/60" />
+                              <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                              <div class="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                            </div>
+                            <div class="flex-1 bg-muted rounded px-3 py-0.5 text-[10px] font-mono text-muted-foreground truncate">
+                              {domainify(project.title)}
+                            </div>
+                          </div>
+                          <div
+                            class={`h-44 bg-gradient-to-br ${project.gradient} p-4 flex flex-col justify-between`}
+                          >
+                            <div class="space-y-2">
+                              <div class="h-3 w-24 bg-foreground/10 rounded" />
+                              <div class="h-2 w-36 bg-foreground/7 rounded" />
+                              <div class="h-2 w-28 bg-foreground/5 rounded" />
+                            </div>
+                            <div class="flex gap-2">
+                              <div class="h-6 w-16 bg-primary/30 rounded text-[8px] font-mono flex items-center justify-center text-primary">
+                                {project.stack[0]}
+                              </div>
+                              <div class="h-6 w-16 bg-primary/20 rounded text-[8px] font-mono flex items-center justify-center text-primary/70">
+                                {project.stack[1]}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* Mobile overlay for "both" type */}
+                        {project.mockupType === "both" && (
+                          <div class="absolute -bottom-4 -right-2 scale-50 origin-bottom-right">
+                            <div class="relative w-36 mx-auto">
+                              <div class="bg-secondary/80 rounded-2xl border-2 border-border overflow-hidden shadow-lg">
+                                <div class="flex justify-center py-1.5 bg-muted/50">
+                                  <div class="w-16 h-1.5 bg-border rounded-full" />
+                                </div>
+                                <div
+                                  class={`h-56 bg-gradient-to-br ${project.gradient} p-3 flex flex-col justify-between`}
+                                >
+                                  <div class="space-y-2">
+                                    <div class="h-2.5 w-16 bg-foreground/10 rounded" />
+                                    <div class="h-2 w-20 bg-foreground/7 rounded" />
+                                    <div class="h-2 w-14 bg-foreground/5 rounded" />
+                                  </div>
+                                  <div class="space-y-1.5">
+                                    <div class="h-8 w-full bg-primary/25 rounded-lg flex items-center justify-center">
+                                      <span class="text-[8px] font-mono text-primary">
+                                        💬 Chat
+                                      </span>
+                                    </div>
+                                    <div class="h-6 w-full bg-foreground/5 rounded-lg" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Mobile-only mockup */}
+                    {project.mockupType === "mobile" && (
+                      <div class="relative w-36 mx-auto">
+                        <div class="bg-secondary/80 rounded-2xl border-2 border-border overflow-hidden shadow-lg">
+                          <div class="flex justify-center py-1.5 bg-muted/50">
+                            <div class="w-16 h-1.5 bg-border rounded-full" />
+                          </div>
+                          <div
+                            class={`h-56 bg-gradient-to-br ${project.gradient} p-3 flex flex-col justify-between`}
+                          >
+                            <div class="space-y-2">
+                              <div class="h-2.5 w-16 bg-foreground/10 rounded" />
+                              <div class="h-2 w-20 bg-foreground/7 rounded" />
+                              <div class="h-2 w-14 bg-foreground/5 rounded" />
+                            </div>
+                            <div class="space-y-1.5">
+                              <div class="h-8 w-full bg-primary/25 rounded-lg flex items-center justify-center">
+                                <span class="text-[8px] font-mono text-primary">
+                                  💬 Chat
+                                </span>
+                              </div>
+                              <div class="h-6 w-full bg-foreground/5 rounded-lg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- Other projects -->
+    <div>
+      <div class="flex items-center gap-4 mb-8">
+        <span class="font-mono text-primary text-sm">🛠</span>
+        <h3 class="font-display text-2xl md:text-3xl font-semibold">
+          Otros Proyectos
+        </h3>
+        <div class="flex-1 h-px bg-border"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        {
+          otherProjects.map((project) => {
+            const icon = icons[project.iconName];
+            return (
+              <div
+                id={`project-${slugify(project.title)}`}
+                class="group bg-card/60 border border-border rounded-xl p-6 hover:glow-border transition-all duration-300 hover:bg-card scroll-mt-24"
+              >
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex items-center gap-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-primary"
+                      set:html={icon.paths}
+                    />
+                    <div>
+                      <h4 class="font-display text-lg font-semibold group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h4>
+                      <span class="font-mono text-xs text-muted-foreground">
+                        {project.type}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 text-muted-foreground">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        class="hover:text-primary transition-colors"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          set:html={icons.Github.paths}
+                        />
+                      </a>
+                    )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        class="hover:text-primary transition-colors"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          set:html={icons.ExternalLink.paths}
+                        />
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <p class="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {project.stack.map((tag) => (
+                    <span class="font-mono text-xs text-primary/80 bg-primary/5 border border-primary/10 px-2 py-0.5 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
