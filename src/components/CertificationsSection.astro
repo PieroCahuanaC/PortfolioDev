@@ -1,0 +1,67 @@
+---
+const certifications = [
+  {
+    name: "AWS Certified Solutions Architect",
+    issuer: "Amazon Web Services",
+    date: "2024",
+  },
+  {
+    name: "Professional Scrum Master I",
+    issuer: "Scrum.org",
+    date: "2023",
+  },
+  {
+    name: "Meta Front-End Developer",
+    issuer: "Meta / Coursera",
+    date: "2023",
+  },
+  {
+    name: "Google Cloud Associate Engineer",
+    issuer: "Google Cloud",
+    date: "2022",
+  },
+];
+
+// Award icon SVG paths
+const awardIcon =
+  '<circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>';
+---
+
+<section id="certificaciones" class="section-padding bg-card/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center gap-4 mb-12">
+      <span class="font-mono text-primary text-sm">04.</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold">
+        Certificaciones
+      </h2>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        certifications.map((cert) => (
+          <div class="group bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-all duration-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary mb-3"
+              set:html={awardIcon}
+            />
+            <h3 class="font-display text-sm font-semibold mb-1 group-hover:text-primary transition-colors leading-snug">
+              {cert.name}
+            </h3>
+            <p class="text-muted-foreground text-xs">{cert.issuer}</p>
+            <p class="font-mono text-xs text-primary/60 mt-2">{cert.date}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
