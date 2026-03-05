@@ -1,0 +1,494 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- Back nav -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center h-16"
+    >
+      <a
+        href="/"
+        class="flex items-center gap-2 font-display text-sm text-muted-foreground hover:text-primary transition-colors group"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="group-hover:-translate-x-1 transition-transform"
+        >
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+        Volver al Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-20 px-6 md:px-12 lg:px-20">
+    <div class="max-w-4xl mx-auto">
+      <!-- ═══════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════ -->
+      <header class="mb-16">
+        <div class="flex items-center gap-3 mb-5">
+          <div
+            class="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary"
+            >
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+              ></path>
+              <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+              <path d="M10 9H8"></path>
+              <path d="M16 13H8"></path>
+              <path d="M16 17H8"></path>
+            </svg>
+          </div>
+          <div>
+            <h1
+              class="font-display text-3xl md:text-4xl lg:text-5xl font-bold"
+            >
+              Factura<span class="text-gradient">Total</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Meta badges -->
+        <div class="flex flex-wrap items-center gap-3 mb-6 text-sm">
+          <span class="flex items-center gap-1.5 text-muted-foreground">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            2024
+          </span>
+          <span class="w-1 h-1 rounded-full bg-border"></span>
+          <span
+            class="font-mono text-xs text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded"
+            >Fullstack · PWA</span
+          >
+          <span class="w-1 h-1 rounded-full bg-border"></span>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              [
+                "Python",
+                "FastAPI",
+                "Astro",
+                "React",
+                "TypeScript",
+                "API SUNAT",
+              ].map((t) => (
+                <span class="font-mono text-xs text-muted-foreground bg-secondary border border-border px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Intro -->
+        <div
+          class="bg-card/60 border border-border rounded-xl p-5 md:p-6 text-foreground/90 text-sm leading-relaxed space-y-2"
+        >
+          <p>
+            Sistema de consulta y monitoreo de ventas SUNAT en tiempo real para
+            pequeñas empresas peruanas. FacturaTotal automatiza el proceso manual
+            de consultar comprobantes electrónicos en el portal SUNAT,
+            consolidando las ventas de múltiples RUCs en un solo dashboard
+            accesible desde cualquier dispositivo.
+          </p>
+        </div>
+      </header>
+
+
+      <!-- ═══════════════════════════════════════
+           EL PROBLEMA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">El Problema</span>
+        </h2>
+
+        <p class="text-foreground/80 text-sm leading-relaxed mb-5">
+          Las pequeñas empresas en Perú que necesitan monitorear sus ventas
+          registradas en SUNAT enfrentan un proceso tedioso y repetitivo:
+        </p>
+
+        <ol class="space-y-3 mb-6">
+          {
+            [
+              "Ingresar al portal e-factura.sunat.gob.pe con su Clave SOL",
+              "Navegar al módulo SIRE → Registro de Ventas",
+              "Seleccionar el período y exportar el resumen de comprobantes",
+              "Repetir todo el proceso por cada RUC que manejen",
+              "Sumar manualmente los totales entre cuentas con calculadora",
+            ].map((step, i) => (
+              <li class="flex items-start gap-3 text-sm">
+                <span class="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono text-xs flex items-center justify-center">
+                  {i + 1}
+                </span>
+                <span class="text-foreground/80">{step}</span>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div
+          class="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4 text-sm"
+        >
+          <p class="text-amber-400/90">
+            Este proceso puede tomar <strong>15-20 minutos</strong> cada vez
+            que se quiere consultar, y debe repetirse cada vez que ocurre una nueva
+            venta.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           FUNCIONALIDADES CLAVE
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          Funcionalidades <span class="text-gradient">clave</span>
+        </h2>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          {
+            [
+              {
+                title: "Consulta multi-RUC",
+                desc: "Configura múltiples cuentas de SUNAT y consulta todas en un solo clic.",
+              },
+              {
+                title: "Resumen por tipo de comprobante",
+                desc: "Desglose automático en facturas, boletas, notas de crédito/débito.",
+              },
+              {
+                title: "Histórico de 18 meses",
+                desc: "Consulta cualquier período de los últimos 18 meses permitidos por SUNAT.",
+              },
+              {
+                title: "Alertas de doble emisión",
+                desc: "Detecta patrones sospechosos como comprobantes consecutivos al mismo cliente.",
+              },
+              {
+                title: "PWA instalable",
+                desc: "Funciona como app nativa en celular o tablet, accesible desde cualquier dispositivo.",
+              },
+            ].map((f) => (
+              <div class="bg-card/60 border border-border rounded-xl p-5 hover:glow-border transition-all duration-300 group">
+
+                <h3 class="font-display font-semibold mb-1 group-hover:text-primary transition-colors">
+                  {f.title}
+                </h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">
+                  {f.desc}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           IMPACTO LOGRADO
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Impacto logrado</span>
+        </h2>
+
+        <div
+          class="bg-primary/5 border border-primary/20 rounded-xl p-6 md:p-8"
+        >
+          <p class="text-foreground/90 text-sm leading-relaxed">
+            Se automatizó completamente el proceso de consulta de comprobantes
+            electrónicos en SUNAT, reduciendo el tiempo de <strong
+              class="text-primary">15-20 minutos de trabajo manual</strong
+            > a <strong class="text-primary">segundos con un solo clic</strong
+            >. El sistema consolida múltiples RUCs y es accesible desde
+            cualquier dispositivo como PWA instalable, eliminando la
+            dependencia del portal web de SUNAT.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           TECNOLOGÍAS
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Tecnologías</span>
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th
+                  class="text-left font-mono text-xs text-primary uppercase tracking-wider py-3 px-4"
+                  >Tecnología</th
+                >
+                <th
+                  class="text-left font-mono text-xs text-primary uppercase tracking-wider py-3 px-4"
+                  >Uso / Implementación</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                [
+                  {
+                    tech: "Python + FastAPI",
+                    use: "Backend API REST, manejo de autenticación OAuth2 y lógica de negocio para procesamiento de comprobantes.",
+                  },
+                  {
+                    tech: "Astro 5 + React 19",
+                    use: "Frontend PWA con renderizado estático, componentes interactivos con React y TypeScript.",
+                  },
+                  {
+                    tech: "API SIRE (SUNAT)",
+                    use: "Integración directa con la API de comprobantes electrónicos de SUNAT usando OAuth2 y Clave SOL.",
+                  },
+                  {
+                    tech: "Pydantic",
+                    use: "Validación de datos y configuración tipada para credenciales y respuestas de la API.",
+                  },
+                  {
+                    tech: "Workbox (PWA)",
+                    use: "Service Worker para cache, instalabilidad como app nativa y acceso offline.",
+                  },
+                  {
+                    tech: "Vercel + Servidor propio",
+                    use: "Frontend desplegado en Vercel, backend en servidor propio con HTTPS.",
+                  },
+                ].map((row) => (
+                  <tr class="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                    <td class="py-3 px-4 font-medium text-foreground whitespace-nowrap">
+                      {row.tech}
+                    </td>
+                    <td class="py-3 px-4 text-muted-foreground">
+                      {row.use}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           CAPTURAS DEL SISTEMA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          Capturas del <span class="text-gradient">Sistema</span>
+        </h2>
+
+        <p class="text-muted-foreground text-sm mb-6">
+          Por contener datos reales de empresas, se muestran mockups
+          representativos de la interfaz del sistema.
+        </p>
+
+        <div class="space-y-6">
+          <!-- Dashboard -->
+          <div
+            class="bg-card/60 border border-border rounded-xl overflow-hidden"
+          >
+            <div
+              class="px-5 py-3 border-b border-border bg-muted/30 flex items-center gap-2"
+            >
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-destructive/60"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/60"></div>
+              </div>
+              <span class="font-mono text-xs text-muted-foreground ml-2"
+                >Dashboard — Resumen consolidado multi-RUC</span
+              >
+            </div>
+            <img
+              src="/images/projects/facturatotal/dashboard.png"
+              alt="Dashboard de FacturaTotal mostrando resumen consolidado de ventas"
+              class="w-full"
+              loading="lazy"
+            />
+          </div>
+
+
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           ARQUITECTURA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Flujo del proyecto</span>
+        </h2>
+
+        <div class="bg-white/[0.03] border border-border rounded-xl p-6">
+          <img
+            src="/images/projects/facturatotal/arquitectura.png"
+            alt="Diagrama de arquitectura: Frontend PWA → Backend FastAPI → SUNAT API SIRE"
+            class="w-full max-w-2xl mx-auto rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           API ENDPOINTS
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          API <span class="text-gradient">Endpoints</span>
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Endpoint 1 -->
+          <div class="bg-card/60 border border-border rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-border flex items-center gap-3">
+              <span
+                class="font-mono text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded"
+                >GET</span
+              >
+              <code class="font-mono text-sm text-foreground"
+                >/api/ventas/meses</code
+              >
+            </div>
+            <div class="p-5">
+              <p class="text-muted-foreground text-sm mb-4">
+                Consulta el resumen mensual de <strong>todos los RUCs</strong> configurados.
+              </p>
+              <div class="bg-secondary/50 rounded-lg p-4 overflow-x-auto">
+                <pre
+                  class="font-mono text-xs text-foreground/80">{`{
+  "periodo": "202503",
+  "tipo": "RESUMEN_MENSUAL_SUNAT_MULTI_RUC",
+  "es_mes_actual": true,
+  "rucs": ["20XXXXXXXXX", "10XXXXXXXXX"],
+  "total_cp_global": 33170.5,
+  "total_docs_global": 69
+}`}</pre>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Endpoint 3 -->
+          <div class="bg-card/60 border border-border rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-border flex items-center gap-3">
+              <span
+                class="font-mono text-xs bg-blue-500/15 text-blue-400 px-2 py-0.5 rounded"
+                >POST</span
+              >
+              <code class="font-mono text-sm text-foreground"
+                >/api/ventas/alertas</code
+              >
+            </div>
+            <div class="p-5">
+              <p class="text-muted-foreground text-sm">
+                Analiza patrones de doble emisión: comprobantes consecutivos al
+                mismo cliente por el mismo monto.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           SEGURIDAD
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Seguridad</span>
+        </h2>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          {
+            [
+              {
+                text: "Las credenciales de SUNAT nunca se exponen al frontend",
+              },
+              {
+                text: "El backend actúa como proxy autenticado entre el usuario y la API SIRE",
+              },
+              {
+                text: "Los tokens OAuth2 se cachean en memoria con expiración automática",
+              },
+              {
+                text: "CORS configurado para orígenes específicos",
+              },
+            ].map((item) => (
+              <div class="bg-card/60 border border-border rounded-lg p-4 flex items-start gap-3">
+                <p class="text-foreground/80 text-sm">{item.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           CTA FINAL
+           ═══════════════════════════════════════ -->
+      <div class="text-center pt-8 border-t border-border">
+        <a
+          href="/#proyectos"
+          class="inline-flex items-center gap-2 font-display text-sm text-muted-foreground hover:text-primary transition-colors group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="group-hover:-translate-x-1 transition-transform"
+          >
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+          Ver todos los proyectos
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

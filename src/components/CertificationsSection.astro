@@ -1,30 +1,83 @@
 ---
+// Microsoft logo as inline SVG (simple 4-color squares)
+const microsoftLogo = `<svg viewBox="0 0 21 21" class="w-5 h-5">
+  <rect x="0" y="0" width="10" height="10" fill="#f25022"/>
+  <rect x="11" y="0" width="10" height="10" fill="#7fba00"/>
+  <rect x="0" y="11" width="10" height="10" fill="#00a4ef"/>
+  <rect x="11" y="11" width="10" height="10" fill="#ffb900"/>
+</svg>`;
+
+
+
 const certifications = [
   {
-    name: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    date: "2024",
+    name: "CCNA: Introduction to Networks",
+    issuer: "Cisco Networking Academy",
+    date: "Ene 2024",
+    link: "https://www.credly.com/badges/83a44085-7eb6-4492-8efd-2d6643d0442c/public_url",
+    logoImg: "/images/logos/cisco.png",
   },
   {
-    name: "Professional Scrum Master I",
-    issuer: "Scrum.org",
-    date: "2023",
+    name: "CCNA: Switching, Routing, and Wireless Essentials",
+    issuer: "Cisco Networking Academy",
+    date: "Ago 2024",
+    link: "https://www.credly.com/badges/5ab4bcb5-b4c7-4eb8-a508-5d193b5aafce/public_url",
+    logoImg: "/images/logos/cisco.png",
   },
   {
-    name: "Meta Front-End Developer",
-    issuer: "Meta / Coursera",
-    date: "2023",
+    name: "CCNA: Enterprise Networking, Security, and Automation",
+    issuer: "Cisco Networking Academy",
+    date: "Abr 2025",
+    link: "https://www.credly.com/badges/c0757959-ee7c-4912-80fe-e087e6d1bfd7/public_url",
+    logoImg: "/images/logos/cisco.png",
   },
   {
-    name: "Google Cloud Associate Engineer",
-    issuer: "Google Cloud",
-    date: "2022",
+    name: "Celonis Foundations",
+    issuer: "Celonis",
+    date: "Jun 2025",
+    link: "https://www.credly.com/badges/b9ac9c5b-cf43-4967-8a4e-bc320c974cc9/public_url",
+    logoImg: "/images/logos/celonis.png",
+  },
+  {
+    name: "Academic Process Mining Fundamentals",
+    issuer: "Celonis",
+    date: "Jul 2025",
+    link: "https://www.credly.com/badges/23c20bc3-6c3d-4b01-93aa-5640156d3d39/public_url",
+    logoImg: "/images/logos/celonis.png",
+  },
+  {
+    name: "Microsoft Excel Expert (Office 2019)",
+    issuer: "Microsoft",
+    date: "Ago 2022",
+    link: "https://www.credly.com/badges/6d8154b3-6246-40e4-8ee6-e47754bdd35d/public_url",
+    logoSvg: microsoftLogo,
+  },
+  {
+    name: "Fundamentos de Power BI",
+    issuer: "Santander Open Academy",
+    date: "Ene 2026",
+    link: "https://drive.google.com/file/d/1b9Ez90_uTEASGUmGgbwD4V6p5MwbVGuu/view",
+    logoImg: "/images/logos/santander.png",
+  },
+  {
+    name: "Databases",
+    issuer: "Certiport - Pearson VUE",
+    date: "Dic 2024",
+    link: "https://www.credly.com/badges/866c370d-34d0-4d7b-bcc3-2679b86e1474/public_url",
+    logoImg: "/images/logos/certiport.png",
+  },
+  {
+    name: "Python",
+    issuer: "Certiport - Pearson VUE",
+    date: "Dic 2025",
+    link: "https://www.credly.com/badges/42581dbb-d4ff-436f-991e-c56d3309e84c/public_url",
+    logoImg: "/images/logos/certiport.png",
   },
 ];
 
-// Award icon SVG paths
-const awardIcon =
-  '<circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>';
+// External link icon
+const externalLinkIcon =
+  '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line>';
 ---
 
 <section id="certificaciones" class="section-padding bg-card/30">
@@ -37,29 +90,46 @@ const awardIcon =
       <div class="flex-1 h-px bg-border"></div>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         certifications.map((cert) => (
-          <div class="group bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition-all duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="text-primary mb-3"
-              set:html={awardIcon}
-            />
+          <a
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-card border border-border rounded-lg p-5 hover:border-primary/30 hover:glow-border transition-all duration-300 block"
+          >
+            <div class="flex items-center justify-between mb-4">
+              {cert.logoImg ? (
+                <img
+                  src={cert.logoImg}
+                  alt={cert.issuer}
+                  class="h-7 w-auto object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <div set:html={cert.logoSvg} />
+              )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0"
+                set:html={externalLinkIcon}
+              />
+            </div>
             <h3 class="font-display text-sm font-semibold mb-1 group-hover:text-primary transition-colors leading-snug">
               {cert.name}
             </h3>
             <p class="text-muted-foreground text-xs">{cert.issuer}</p>
             <p class="font-mono text-xs text-primary/60 mt-2">{cert.date}</p>
-          </div>
+          </a>
         ))
       }
     </div>

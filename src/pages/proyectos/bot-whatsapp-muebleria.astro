@@ -1,0 +1,410 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- Back nav -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center h-16"
+    >
+      <a
+        href="/"
+        class="flex items-center gap-2 font-display text-sm text-muted-foreground hover:text-primary transition-colors group"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="group-hover:-translate-x-1 transition-transform"
+        >
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+        Volver al Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-20 px-6 md:px-12 lg:px-20">
+    <div class="max-w-4xl mx-auto">
+      <!-- ═══════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════ -->
+      <header class="mb-16">
+        <div class="flex items-center gap-3 mb-5">
+          <div
+            class="w-14 h-14 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-green-400"
+            >
+              <path d="M12 8V4H8"></path>
+              <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+              <path d="M2 14h2"></path>
+              <path d="M20 14h2"></path>
+              <path d="M15 13v2"></path>
+              <path d="M9 13v2"></path>
+            </svg>
+          </div>
+          <div>
+            <h1
+              class="font-display text-3xl md:text-4xl lg:text-5xl font-bold"
+            >
+              Bot WhatsApp<span class="text-gradient"> Muebleria</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Meta badges -->
+        <div class="flex flex-wrap items-center gap-3 mb-6 text-sm">
+          <span class="flex items-center gap-1.5 text-muted-foreground">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            2024
+          </span>
+          <span class="w-1 h-1 rounded-full bg-border"></span>
+          <span
+            class="font-mono text-xs text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded"
+            >Backend · IA</span
+          >
+          <span class="w-1 h-1 rounded-full bg-border"></span>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              [
+                "Python",
+                "Flask",
+                "WhatsApp API",
+                "Groq AI",
+                "Whisper",
+                "Google Sheets",
+              ].map((t) => (
+                <span class="font-mono text-xs text-muted-foreground bg-secondary border border-border px-2 py-0.5 rounded">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Intro -->
+        <div
+          class="bg-card/60 border border-border rounded-xl p-5 md:p-6 text-foreground/90 text-sm leading-relaxed space-y-2"
+        >
+          <p>
+            Bot de WhatsApp con Inteligencia Artificial para la gestion de
+            ventas de una muebleria. Permite a los vendedores registrar,
+            corregir, eliminar y consultar sus ventas del dia enviando mensajes
+            de texto o audios por WhatsApp, sin necesidad de abrir ninguna otra
+            aplicacion.
+          </p>
+        </div>
+      </header>
+
+      <!-- ═══════════════════════════════════════
+           EL PROBLEMA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">El Problema</span>
+        </h2>
+
+        <p class="text-foreground/80 text-sm leading-relaxed">
+          En una muebleria con varias tiendas y vendedores, llevar el control de
+          las ventas diarias de forma manual (en cuadernos o llamando al jefe) es
+          lento y propenso a errores. Los vendedores necesitan una forma rapida y
+          natural de registrar ventas sin interrumpir su trabajo.
+        </p>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           COMO FUNCIONA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          Como <span class="text-gradient">funciona</span>
+        </h2>
+
+        <ol class="space-y-4">
+          {
+            [
+              "El vendedor envia un mensaje de WhatsApp (texto o audio) describiendo su venta.",
+              "El bot recibe el mensaje a traves de la API de WhatsApp (Meta Cloud API).",
+              "Si es un audio, se transcribe a texto usando el modelo Whisper de Groq.",
+              "El texto se envia a un modelo de IA (Groq) que interpreta y extrae los datos estructurados: producto, precio, metodo de pago, tienda, cliente.",
+              "Los datos se guardan automaticamente en una hoja de Google Sheets.",
+              "El bot responde al vendedor con una confirmacion de la venta registrada.",
+            ].map((step, i) => (
+              <li class="flex items-start gap-3 text-sm">
+                <span class="mt-0.5 flex-shrink-0 w-7 h-7 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 font-mono text-xs flex items-center justify-center font-bold">
+                  {i + 1}
+                </span>
+                <span class="text-foreground/80 leading-relaxed">{step}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           FUNCIONALIDADES
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          Funcionalidades <span class="text-gradient">principales</span>
+        </h2>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          {
+            [
+              {
+                title: "Registro de ventas",
+                desc: "El vendedor describe la venta en lenguaje natural (texto o audio). La IA extrae producto, cantidad, precio, metodo de pago, tienda y cliente. Soporta pagos mixtos.",
+              },
+              {
+                title: "Correccion de ventas",
+                desc: 'Corregir la ultima venta: cambiar precio, producto, metodo de pago o tienda. Ejemplo: "Era con Yape, no con efectivo".',
+              },
+              {
+                title: "Eliminacion de ventas",
+                desc: "Borrar la ultima venta, borrar por nombre de producto, o borrar todas las ventas del dia con confirmacion de seguridad.",
+              },
+              {
+                title: "Gestion de deudas",
+                desc: "Si una venta es al credito o con adelanto parcial, el bot calcula el saldo pendiente. El vendedor puede marcar deudas como saldadas.",
+              },
+              {
+                title: "Reporte del dia",
+                desc: "Resumen de ventas totales, efectivo en caja, pagos virtuales (Yape/Plin) y creditos pendientes. El jefe ve un reporte global.",
+              },
+              {
+                title: "Generacion de PDF",
+                desc: "Despues del reporte, el vendedor puede pedir un PDF profesional con la tabla de ventas y resumen financiero, enviado directamente por WhatsApp.",
+              },
+            ].map((f) => (
+              <div class="bg-card/60 border border-border rounded-xl p-5 hover:glow-border transition-all duration-300 group">
+                <h3 class="font-display font-semibold mb-1 group-hover:text-primary transition-colors">
+                  {f.title}
+                </h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">
+                  {f.desc}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           IMPACTO
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Impacto logrado</span>
+        </h2>
+
+        <div
+          class="bg-green-500/5 border border-green-500/20 rounded-xl p-6 md:p-8"
+        >
+          <p class="text-foreground/90 text-sm leading-relaxed">
+            Se centralizo el registro de ventas de multiples tiendas en una sola
+            hoja de Google Sheets en tiempo real, eliminando los cuadernos
+            manuales y las llamadas al jefe. Los vendedores registran ventas en
+            <strong class="text-green-400">segundos</strong>, usando solo
+            WhatsApp con lenguaje natural o audios. El jefe tiene visibilidad
+            completa de todas las ventas del dia desde cualquier lugar.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           TECNOLOGIAS
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Tecnologias</span>
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th
+                  class="text-left font-mono text-xs text-primary uppercase tracking-wider py-3 px-4"
+                  >Tecnologia</th
+                >
+                <th
+                  class="text-left font-mono text-xs text-primary uppercase tracking-wider py-3 px-4"
+                  >Uso / Implementacion</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                [
+                  {
+                    tech: "Python",
+                    use: "Lenguaje principal del bot, maneja toda la logica de negocio.",
+                  },
+                  {
+                    tech: "Flask",
+                    use: "Servidor web para recibir los webhooks de WhatsApp.",
+                  },
+                  {
+                    tech: "Meta Cloud API",
+                    use: "Envio y recepcion de mensajes de WhatsApp Business.",
+                  },
+                  {
+                    tech: "Groq API (LLM)",
+                    use: "Modelo de IA para interpretar ventas escritas en lenguaje natural.",
+                  },
+                  {
+                    tech: "Whisper (via Groq)",
+                    use: "Transcripcion de audios de WhatsApp a texto.",
+                  },
+                  {
+                    tech: "Google Sheets",
+                    use: "Base de datos en la nube donde se guardan las ventas en tiempo real.",
+                  },
+                  {
+                    tech: "ReportLab",
+                    use: "Generacion de reportes profesionales en formato PDF.",
+                  },
+                  {
+                    tech: "Render",
+                    use: "Plataforma de despliegue del servidor Flask.",
+                  },
+                ].map((row) => (
+                  <tr class="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                    <td class="py-3 px-4 font-medium text-foreground whitespace-nowrap">
+                      {row.tech}
+                    </td>
+                    <td class="py-3 px-4 text-muted-foreground">{row.use}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════
+           FLUJO / ARQUITECTURA
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-primary">Flujo del proyecto</span>
+        </h2>
+
+        <div class="bg-white/[0.03] border border-border rounded-xl p-6">
+          <img
+            src="/images/projects/bot-whatsapp/flujo.png"
+            alt="Diagrama de flujo: Vendedor → WhatsApp → Flask → Groq AI + Google Sheets"
+            class="w-full max-w-2xl mx-auto rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           EJEMPLO DE USO
+           ═══════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6">
+          Ejemplo de <span class="text-gradient">uso</span>
+        </h2>
+
+        <div class="space-y-4">
+          <!-- User message -->
+          <div class="flex justify-end">
+            <div
+              class="bg-green-700/30 border border-green-500/20 rounded-xl rounded-tr-sm px-4 py-3 max-w-md"
+            >
+              <p class="text-sm text-foreground/90 italic">
+                "Vendi una comoda de melamina a 750, 400 yape y el resto
+                efectivo"
+              </p>
+            </div>
+          </div>
+
+          <!-- Bot response -->
+          <div class="flex justify-start">
+            <div
+              class="bg-card/80 border border-border rounded-xl rounded-tl-sm px-4 py-3 max-w-md"
+            >
+              <p class="text-sm text-foreground/90 font-medium mb-2">
+                Guardado:
+              </p>
+              <div class="space-y-1 text-sm text-foreground/80">
+                <p>Comoda de melamina</p>
+                <p>S/ 750 (400 Yape 350 Efectivo)</p>
+                <p>Tienda: Arriba</p>
+                <p class="text-green-400 font-medium">Cancelado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════════════
+           CTA FINAL
+           ═══════════════════════════════════════ -->
+      <div class="text-center pt-8 border-t border-border">
+        <a
+          href="/#proyectos"
+          class="inline-flex items-center gap-2 font-display text-sm text-muted-foreground hover:text-primary transition-colors group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="group-hover:-translate-x-1 transition-transform"
+          >
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+          Ver todos los proyectos
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
